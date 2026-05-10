@@ -1,0 +1,57 @@
+require('dotenv').config();
+const express    = require('express');
+const cors       = require('cors');
+const helmet     = require('helmet');
+const rateLimit  = require('express-rate-limit');
+const leadsRouter = require('./routes/leads.routes');
+
+const app  = express();
+const PORT = process.env.PORT || 3001;
+
+// ── Seguridad básica ──────────────────────────────────────────────────────────
+app.use(helmet());
+
+// ── CORS — solo permite peticiones desde el frontend ─────────────────────────
+app.use(cors({
+  origin:      process.env.ALLOWED_ORIGIN || 'http://localhost:5173',
+  methods:     ['GET', 'POST', 'PATCH'],
+  credentials: false,
+}));
+
+// ── Body parser ───────────────────────────────────────────────────────────────
+app.use(express.json({ limit: '10kb' }));
+
+// ── Rate limiting — máx 20 peticiones por IP cada 15 min ────────────────────
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max:      20,
+  message:  { ok: false, message: 'Demasiadas solicitudes. Intenta en unos minutos.' },
+  standardHeaders: true,
+  legacyHeaders:   false,
+});
+app.use('/api/', limiter);
+
+// ── Rutas ─────────────────────────────────────────────────────────────────────
+app.use('/api/leads', leadsRouter);
+
+// Health check — útil para saber si el servidor está vivo desde el VPS
+app.get('/health', (_, res) => {
+  res.json({ ok: true, status: 'online', timestamp: new Date().toISOString() });
+});
+
+// 404 para rutas no definidas
+app.use((_, res) => {
+  res.status(404).json({ ok: false, message: 'Ruta no encontrada.' });
+});
+
+// Error handler global
+app.use((err, _, res, __) => {
+  console.error('❌ Error no manejado:', err.message);
+  res.status(500).json({ ok: false, message: 'Error interno del servidor.' });
+});
+
+// ── Arrancar ──────────────────────────────────────────────────────────────────
+app.listen(PORT, () => {
+  console.log(`🚀 Leybrak API corriendo en http://localhost:${PORT}`);
+  console.log(`   Entorno: ${process.env.NODE_ENV || 'development'}`);
+});

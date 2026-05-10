@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Obligamos al body a cambiar de color según el tema */
+html {
+  overflow-y: scroll; /* evita el salto de layout */
+  height: 100%;
+}
+
+body {
+  min-height: 100%;  /* no 100vh */
+}
+body {
+  
+  @apply bg-leybrak-light text-gray-900 dark:bg-leybrak-dark dark:text-white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
