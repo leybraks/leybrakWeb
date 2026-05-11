@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Tu página visual (Vite)
+  landing_frontend:
+    build: .
+    container_name: leybrak_landing_frontend
+    restart: always
+    networks:
+      - nginx_network
+
+  # Tu nueva API en Node.js
+  landing_backend:
+    build: ./leybrak-api  # Le decimos que busque el Dockerfile en esa carpeta
+    container_name: leybrak_landing_backend
+    restart: always
+    # Conectamos el archivo .env de tu API
+    env_file:
+      - ./leybrak-api/.env
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    external: true

@@ -13,7 +13,7 @@ const PRODUCTS = [
     tag: 'Disponible ahora',
     tagBlue: true,
     desc: 'Para restaurantes y locales de comida. Mesas, pedidos, caja e inventario en un solo lugar.',
-    to: '/softwares/brava-pos',
+    to: '/softwares/leybrak-pos',
     cta: 'Ver producto',
     available: true,
   },
