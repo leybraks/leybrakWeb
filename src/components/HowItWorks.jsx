@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Zap, Settings, ArrowRight, Check } from 'lucide-react';
-
+import { useScrollTo } from '../hooks/useScrollTo';
+import { Link } from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger);
 
 const SAAS_STEPS = [
@@ -55,7 +56,8 @@ const HowItWorks = () => {
   const saasStepsRef = useRef([]);
   const customStepsRef = useRef([]);
   const dividerRef   = useRef(null);
-  const [activeTrack, setActiveTrack] = useState(null); // 'saas' | 'custom' | null
+  const [activeTrack, setActiveTrack] = useState(null);
+  const scrollTo = useScrollTo();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -287,13 +289,14 @@ const HowItWorks = () => {
               </div>
 
               {/* CTA */}
-              <button
+              <Link
+                to="/softwares"
                 className="mt-6 w-full flex items-center justify-center gap-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3.5 text-[13px] font-bold uppercase tracking-widest border-2 border-gray-900 dark:border-white hover:bg-leybrak-blue hover:border-leybrak-blue dark:hover:bg-leybrak-blue dark:hover:border-leybrak-blue hover:text-white transition-all duration-200 group"
                 style={{ boxShadow: '4px 4px 0px #2563eb' }}
               >
                 Ver productos disponibles
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -374,6 +377,7 @@ const HowItWorks = () => {
 
               {/* CTA */}
               <button
+                onClick={() => scrollTo('cta')}
                 className="mt-6 w-full flex items-center justify-center gap-3 bg-transparent text-gray-900 dark:text-white px-6 py-3.5 text-[13px] font-bold uppercase tracking-widest border-2 border-gray-900 dark:border-white hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-all duration-200 group"
                 style={{ boxShadow: '4px 4px 0px rgba(0,0,0,0.15)' }}
               >

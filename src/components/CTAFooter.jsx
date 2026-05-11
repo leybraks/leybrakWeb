@@ -267,7 +267,7 @@ const CTAFooter = () => {
           </div>
 
           <p className="text-center text-gray-700 text-[11px] font-mono tracking-widest uppercase mt-8">
-            // +40 negocios ya dieron el paso — el tuyo puede ser el siguiente
+            // La libertad no tiene precio
           </p>
         </div>
       </section>

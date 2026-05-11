@@ -234,7 +234,6 @@ const Problems = () => {
           ))}
         </div>
 
-        {/* ── CTA de cierre ────────────────────────────────────────────────── */}
         <div ref={ctaRef} className="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t-2 border-white/10 pt-10">
           <p
             className="text-white text-[1.2rem] font-black uppercase tracking-tight max-w-md"
@@ -242,18 +241,6 @@ const Problems = () => {
             Si alguno de estos te llegó,{' '}
             <span className="text-leybrak-blue">tenemos la solución.</span>
           </p>
-
-          <button
-            className="flex items-center gap-3 bg-leybrak-blue text-white px-8 py-4 text-sm font-bold uppercase tracking-widest border-2 border-transparent hover:bg-transparent hover:border-leybrak-blue transition-all duration-200 group"
-            style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              letterSpacing: '0.12em',
-              boxShadow: '4px 4px 0px rgba(255,255,255,0.15)',
-            }}
-          >
-            Cuéntame cómo funciona
-            <span className="group-hover:translate-x-1.5 transition-transform duration-200 inline-block">→</span>
-          </button>
         </div>
 
       </div>

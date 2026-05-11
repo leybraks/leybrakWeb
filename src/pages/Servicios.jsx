@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ArrowRight } from 'lucide-react';
-
+import { useScrollTo } from '../hooks/useScrollTo';
 const SERVICES = [
   {
     id: '01',
@@ -40,7 +40,7 @@ const Servicios = () => {
   const headerRef  = useRef(null);
   const gridRef    = useRef(null);
   const ctaRef     = useRef(null);
-
+  const scrollTo = useScrollTo();
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -178,6 +178,7 @@ const Servicios = () => {
               Diagnóstico gratuito, sin compromiso.
             </p>
             <button
+              onClick={() => scrollTo('cta')}
               className="flex items-center gap-3 bg-leybrak-blue text-white px-8 py-4 text-[13px] font-bold uppercase tracking-widest border-2 border-leybrak-blue hover:bg-transparent hover:text-leybrak-blue transition-all duration-200 group w-fit"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",

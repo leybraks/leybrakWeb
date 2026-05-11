@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 // ─── Reemplaza estos valores cuando tengas el contenido real ──────────────────
 const PLACEHOLDER = {
-  founded:  '2024',
+  founded:  '2026',
   city:     'Lima, Perú',
   mission:  'Hacer que la tecnología sea accesible para cualquier negocio, sin importar su tamaño.',
   values: [
@@ -82,8 +82,8 @@ const Nosotros = () => {
           {[
             { label: 'Fundada',    value: PLACEHOLDER.founded },
             { label: 'Ciudad',     value: PLACEHOLDER.city },
-            { label: 'Negocios',   value: '+40' },
-            { label: 'Sectores',   value: '+5' },
+            { label: 'Negocios',   value: '1' },
+            { label: 'Sectores',   value: '1' },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -136,7 +136,7 @@ const Nosotros = () => {
             className="text-gray-500 dark:text-gray-500 text-[0.9rem]"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            Aquí irá el equipo cuando tengas las fotos y bios listas.
+            
           </p>
         </div>
 
